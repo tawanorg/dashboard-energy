@@ -1,13 +1,14 @@
+import {
+  LABEL_COLOR,
+  FONT_SIZE,
+  LINE_ONE_COLOR,
+  LINE_TWO_COLOR,
+  BALANCE_LINE_COLOR,
+} from '@govhack/constants';
 import React from 'react';
 import { VictoryLine, VictoryAxis, VictoryLabel } from 'victory';
 
 const Chart = () => {
-  const LINE_ONE_COLOR = '#38A169';
-  const LINE_TWO_COLOR = '#ECC94B';
-  const BALANCE_LINE_COLOR = '#E53E3E';
-  const LABEL_COLOR = '#000000';
-  const FONT_SIZE = 14;
-
   const getDataSetOne = () => {
     return [
       { x: new Date(2000, 1, 1), y: 12 },

@@ -39,7 +39,7 @@ const StatBox: React.FC<Props> = ({ month, type }) => {
               currency: 'AUD',
             }).format(Math.floor(Math.random() * 100))}
           </StatNumber>
-          <StatHelpText>
+          <StatHelpText textAlign="right">
             <StatArrow type={type} />
             {Math.floor(Math.random() * 20)}%
           </StatHelpText>
