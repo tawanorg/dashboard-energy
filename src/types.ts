@@ -1,11 +1,15 @@
 export interface MapItem {
-  id: string;
-  LGA: string;
-  DAILY_AVG: number;
-  GENERAL_SUPPLY: string;
-  LAT: number;
-  LONG: number;
+  type: string;
+  geometry: { type: string; coordinates: number[] | undefined };
+  properties: {
+    id?: string;
+    LGA: string;
+    cluster?: boolean;
+    GENERAL_SUPPLY: string;
+    DAILY_AVG: number;
+  };
 }
+
 export type MapData = {
   type: string;
   features: MapItem[];

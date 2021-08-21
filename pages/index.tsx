@@ -11,14 +11,20 @@ import type { NextPage } from 'next';
 
 import Navigation from '@govhack/components/Navigation';
 import CardBox from '@govhack/components/CardBox';
-import Chart from '@govhack/components/Chart';
 import Stat from '@govhack/components/Stat';
 
 import { GUTTER_WIDTH } from '@govhack/constants';
 import React from 'react';
-import ChartTwo from '@govhack/components/ChartTwo';
+import ChartUsage from '@govhack/components/ChartUsage';
+import ChartBill from '@govhack/components/ChartBill';
+import ChartForecast from '@govhack/components/ChartForecast';
 
-const NEXT_THREE_MONTHS = ['September', 'October', 'November'];
+const forecastData = [
+  ['September', 76.91528, 'decrease'],
+  ['October', 78.2378, 'increase'],
+  ['November', 77.57654, 'decrease'],
+  ['December', 77.67284, 'increase'],
+];
 
 const Home: NextPage = () => {
   return (
@@ -27,22 +33,14 @@ const Home: NextPage = () => {
       <Container maxW="8xl" py={GUTTER_WIDTH * 4}>
         <SimpleGrid columns={2} gap={GUTTER_WIDTH * 4} width="full">
           <Stack spacing={GUTTER_WIDTH * 4}>
-            <CardBox
-              title="Average electricity usage"
-              subtitle="24 hours usage data vs average electricity usage by census"
-            >
-              <Flex
-                mt={GUTTER_WIDTH * 2}
-                alignItems="center"
-                width="full"
-                shadow="lg"
-                p={GUTTER_WIDTH}
-                borderRadius="lg"
-                borderWidth="1px"
-              >
-                Content
-              </Flex>
+            <CardBox title="Monthly Usage">
+              <ChartUsage />
             </CardBox>
+            <CardBox title="Monthly Bills">
+              <ChartBill />
+            </CardBox>
+          </Stack>
+          <Stack>
             <CardBox
               title="Expected Bill"
               subtitle="Expected Bill for the 4 next months"
@@ -52,19 +50,18 @@ const Home: NextPage = () => {
                 spacing={GUTTER_WIDTH}
                 py={GUTTER_WIDTH * 2}
               >
-                {NEXT_THREE_MONTHS.map((month, key) => (
-                  <Stat type="increase" key={key} month={month} />
+                {forecastData.map((month, key) => (
+                  <Stat
+                    type={month[2]}
+                    key={key}
+                    month={month[0]}
+                    value={Number(month[1])}
+                  />
                 ))}
-                <Stat type="decrease" month="December" />
               </SimpleGrid>
             </CardBox>
-          </Stack>
-          <Stack>
-            <CardBox title="Monthly Usage & Billed">
-              <ChartTwo />
-            </CardBox>
             <CardBox title="Forecast of Usage">
-              <Chart />
+              <ChartForecast />
             </CardBox>
           </Stack>
         </SimpleGrid>

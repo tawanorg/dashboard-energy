@@ -9,13 +9,15 @@ import {
   StatHelpText,
 } from '@chakra-ui/react';
 import { GUTTER_WIDTH } from '@govhack/constants';
+import { formatCurrency } from '@govhack/utils';
 
 interface Props {
   month: string;
+  value: number;
   type: 'increase' | 'decrease';
 }
 
-const StatBox: React.FC<Props> = ({ month, type }) => {
+const StatBox: React.FC<Props> = ({ month, value, type }) => {
   return (
     <Flex
       alignItems="center"
@@ -27,18 +29,13 @@ const StatBox: React.FC<Props> = ({ month, type }) => {
     >
       <Flex flexDir="column">
         <Text fontSize="xl">{month}</Text>
-        <Text fontSize="md" opacity="0.6">
+        {/* <Text fontSize="md" opacity="0.6">
           Description
-        </Text>
+        </Text> */}
       </Flex>
       <StatGroup ml="auto">
         <Stat>
-          <StatNumber>
-            {new Intl.NumberFormat('us-AU', {
-              style: 'currency',
-              currency: 'AUD',
-            }).format(Math.floor(Math.random() * 100))}
-          </StatNumber>
+          <StatNumber>{formatCurrency(Math.floor(value))}</StatNumber>
           <StatHelpText textAlign="right">
             <StatArrow type={type} />
             {Math.floor(Math.random() * 20)}%

@@ -8,3 +8,10 @@ export async function dataFetcher(params: any) {
     return {};
   }
 }
+
+export const formatCurrency = (number: number) => {
+  return new Intl.NumberFormat('us-AU', {
+    style: 'currency',
+    currency: 'AUD',
+  }).format(number);
+};

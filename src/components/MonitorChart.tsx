@@ -1,27 +1,37 @@
+import { BALANCE_LINE_COLOR, LINE_TWO_COLOR } from '@govhack/constants';
 import React from 'react';
 import { VictoryPie, VictoryAnimation, VictoryLabel } from 'victory';
 
-class MonitorChart extends React.Component {
+type Props = {
+  value: number;
+};
+
+type State = {
+  percent: number;
+  data: { x: number; y: number }[];
+};
+
+class MonitorChart extends React.Component<Props, State> {
   setStateInterval: any;
 
-  constructor(props: any) {
+  constructor(props: Props) {
     super(props);
     this.state = {
-      percent: 25,
+      percent: 0,
       data: this.getData(0),
     };
   }
 
   componentDidMount() {
-    let percent = 25;
-    this.setStateInterval = window.setInterval(() => {
-      percent += Math.random() * 25;
-      percent = percent > 100 ? 0 : percent;
+    let percent = 0;
+    let self = this;
+    this.setStateInterval = window.setTimeout(() => {
+      percent = self.props.value;
       this.setState({
         percent,
         data: this.getData(percent),
       });
-    }, 2000);
+    }, 500);
   }
 
   componentWillUnmount() {
@@ -51,7 +61,8 @@ class MonitorChart extends React.Component {
             style={{
               data: {
                 fill: ({ datum }) => {
-                  const color = datum.y > 30 ? 'green' : 'red';
+                  const color =
+                    datum.y > 30 ? BALANCE_LINE_COLOR : LINE_TWO_COLOR;
                   return datum.x === 1 ? color : 'transparent';
                 },
               },
@@ -65,7 +76,7 @@ class MonitorChart extends React.Component {
                   verticalAnchor="middle"
                   x={200}
                   y={200}
-                  text={`${Math.round(Number(newProps.percent))}%`}
+                  text={`${Number(newProps.percent).toFixed(2)} kWh`}
                   style={{ fontSize: 45 }}
                 />
               );

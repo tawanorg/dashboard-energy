@@ -12,8 +12,8 @@ const Comparison: NextPage = () => {
       <Navigation />
       <Box width="full" height="full" pos="relative">
         <Map>
-          <CardBox title="Energy saved">
-            <MonitorChart />
+          <CardBox title="User daily average consumption">
+            <MonitorChart value={12.6} />
           </CardBox>
         </Map>
       </Box>
