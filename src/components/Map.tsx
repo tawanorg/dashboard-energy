@@ -34,12 +34,10 @@ const Map: React.FC<Props> = ({ children }) => {
   React.useEffect(() => {
     if (!pageIsMounted) return;
     if (isEmpty(data)) return;
-    if (!data?.features[0].geometry.coordinates) return;
- 
-    const center = new mapboxgl.LngLat(
-      data?.features[0].geometry.coordinates[0],
-      data?.features[0].geometry.coordinates[1]
-    );
+
+    const centerLatLng = [-33.80899676, 151.0006667].reverse();
+
+    const center = new mapboxgl.LngLat(centerLatLng[0], centerLatLng[1]);
 
     const newMap = new mapboxgl.Map({
       container: 'my-map',
