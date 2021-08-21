@@ -86,9 +86,7 @@ const Billing: NextPage = () => {
                 alignItems="center"
               >
                 <Heading fontSize="md">Greenhouse gas contribution</Heading>
-                <Text>
-                  0.283 metric tons of electricity has been contributed
-                </Text>
+                <Text>0.283 metric tonnes of greenhouse gas</Text>
                 <Box>
                   <CircularProgress
                     value={0.283}
@@ -98,7 +96,7 @@ const Billing: NextPage = () => {
                     <CircularProgressLabel fontSize="4xl" fontWeight="semibold">
                       0.283
                       <br />
-                      <Text fontSize="md">Metric tons</Text>
+                      <Text fontSize="md">Metric tonnes</Text>
                     </CircularProgressLabel>
                   </CircularProgress>
                 </Box>
