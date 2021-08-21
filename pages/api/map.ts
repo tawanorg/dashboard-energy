@@ -14,62 +14,6 @@ export default function handler(
         type: 'Feature',
         properties: {
           // id: uniqId() + Math.random(),
-          LGA: 'BAYSIDE',
-          DAILY_AVG: 12.4,
-          cluster: false,
-          GENERAL_SUPPLY: '277,840',
-        },
-        geometry: {
-          type: 'Point',
-          coordinates: [-37.93333, 145.01667].reverse(),
-        },
-      },
-      {
-        type: 'Feature',
-        properties: {
-          // id: uniqId() + Math.random(),
-          LGA: 'BURWOOD',
-          DAILY_AVG: 12.6,
-          cluster: false,
-          GENERAL_SUPPLY: '63,676',
-        },
-        geometry: {
-          type: 'Point',
-          coordinates: [-37.84978, 145.11901].reverse(),
-        },
-      },
-      {
-        type: 'Feature',
-        properties: {
-          // id: uniqId() + Math.random(),
-          LGA: 'CANADA BAY',
-          DAILY_AVG: 13.3,
-          cluster: false,
-          GENERAL_SUPPLY: '177,872',
-        },
-        geometry: {
-          type: 'Point',
-          coordinates: [-37.9333296, 145.0166666].reverse(),
-        },
-      },
-      {
-        type: 'Feature',
-        properties: {
-          // id: uniqId() + Math.random(),
-          LGA: 'CANTERBURY-BANKSTOWN',
-          DAILY_AVG: 15.1,
-          cluster: false,
-          GENERAL_SUPPLY: '641,654',
-        },
-        geometry: {
-          type: 'Point',
-          coordinates: [-37.8247, 145.08476].reverse(),
-        },
-      },
-      {
-        type: 'Feature',
-        properties: {
-          // id: uniqId() + Math.random(),
           LGA: 'CUMBERLAND',
           DAILY_AVG: 13.1,
           cluster: false,

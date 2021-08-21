@@ -35,9 +35,7 @@ const Map: React.FC<Props> = ({ children }) => {
     if (!pageIsMounted) return;
     if (isEmpty(data)) return;
     if (!data?.features[0].geometry.coordinates) return;
-
-    console.log('data', data);
-
+ 
     const center = new mapboxgl.LngLat(
       data?.features[0].geometry.coordinates[0],
       data?.features[0].geometry.coordinates[1]
@@ -47,7 +45,7 @@ const Map: React.FC<Props> = ({ children }) => {
       container: 'my-map',
       style: 'mapbox://styles/tewtawan/cksllpfm08r9817och29fwr9f',
       center,
-      zoom: 8,
+      zoom: 10,
       pitch: 45,
       // maxBounds,
     });

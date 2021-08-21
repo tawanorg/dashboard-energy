@@ -26,7 +26,7 @@ const MENU = [
   },
   {
     path: '/billing',
-    title: 'Billing',
+    title: 'Rewards & Billing',
   },
 ];
 
