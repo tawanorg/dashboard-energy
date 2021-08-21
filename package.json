@@ -18,12 +18,14 @@
     "framer-motion": "^4",
     "next": "11.1.0",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "victory": "^35.10.1"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^11.1.0",
     "@types/faker": "^5.5.8",
     "@types/react": "17.0.19",
+    "@types/victory": "^33.1.5",
     "eslint": "7.32.0",
     "eslint-config-next": "11.1.0",
     "eslint-config-prettier": "^8.3.0",

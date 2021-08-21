@@ -1,8 +1,8 @@
 // pages/_document.js
 
-import { ColorModeScript } from "@chakra-ui/react";
-import NextDocument, { Html, Head, Main, NextScript } from "next/document";
-import { theme } from "@govhack/design";
+import { Box, ColorModeScript } from '@chakra-ui/react';
+import NextDocument, { Html, Head, Main, NextScript } from 'next/document';
+import { theme } from '@govhack/design';
 
 export default class Document extends NextDocument {
   render() {
