@@ -17,7 +17,6 @@ interface Props {}
 const SOURCE = 'map';
 
 const Map: React.FC<Props> = ({ children }) => {
-  const [newMap, setMap] = React.useState<mapboxgl.Map | undefined>();
   const pageIsMounted = React.useRef<boolean>();
   const { data, error } = useSWR<MapData>('/api/map', dataFetcher);
 
@@ -67,7 +66,7 @@ const Map: React.FC<Props> = ({ children }) => {
         top={0}
         bottom={0}
         zIndex="sticky"
-        height="86vh"
+        height="90.5vh"
         justifyContent="center"
         alignItems="center"
       >
@@ -82,7 +81,7 @@ const Map: React.FC<Props> = ({ children }) => {
           {children}
         </Flex>
       </Flex>
-      <div id="my-map" style={{ height: '86vh' }} />;
+      <div id="my-map" style={{ height: '90.5vh' }} />;
     </Flex>
   );
 };
