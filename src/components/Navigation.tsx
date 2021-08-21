@@ -98,7 +98,7 @@ const Navigation = () => {
             </Button> */}
           </Text>
         </Flex>
-        <Avatar src="https://tawan.org/tawan.png" name="Tew Tawan" />
+        <Avatar name="Tew Tawan" />
       </Flex>
     </Flex>
   );
