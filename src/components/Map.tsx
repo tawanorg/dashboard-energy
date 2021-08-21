@@ -210,7 +210,7 @@ function addDataLayer(map, data) {
 
     new mapboxgl.Popup()
       .setLngLat(coordinates)
-      .setHTML(`helloworld`)
+      .setHTML(`General supply: ${e.features[0].properties.GENERAL_SUPPLY}`)
       .addTo(map);
   });
 
