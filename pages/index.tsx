@@ -52,8 +52,10 @@ const Home: NextPage = () => {
               >
                 {forecastData.map((month, key) => (
                   <Stat
+                    // @ts-ignore
                     type={month[2]}
                     key={key}
+                    // @ts-ignore
                     month={month[0]}
                     value={Number(month[1])}
                   />

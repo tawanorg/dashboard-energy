@@ -1,9 +1,11 @@
 import React from 'react';
+import { Text } from '@chakra-ui/react';
 import {
   VictoryLine,
   VictoryChart,
   VictoryTheme,
   VictoryClipContainer,
+  VictoryAxis,
 } from 'victory';
 import {
   BILL_DATA,
@@ -38,6 +40,7 @@ class ChartForecast extends React.Component {
               ...BILL_DATA.flatMap(data => ({
                 x: data.DATE.toLocaleString('default', {
                   month: 'short',
+                  year: '2-digit',
                 }),
                 y: data.properties.BILL,
               })),
@@ -56,11 +59,34 @@ class ChartForecast extends React.Component {
               },
             }}
             data={[
-              { x: 'Sep', y: BILL_DATA[BILL_DATA.length - 1].properties.BILL },
-              { x: 'Oct', y: 78.2378 },
-              { x: 'Nov', y: 77.57654 },
-              { x: 'Dec', y: 77.67284 },
+              {
+                x: 'Sep 21',
+                y: BILL_DATA[BILL_DATA.length - 1].properties.BILL,
+              },
+              { x: 'Oct 21', y: 78.2378 },
+              { x: 'Nov 21', y: 77.57654 },
+              { x: 'Dec 21', y: 77.67284 },
             ]}
+          />
+          <VictoryAxis
+            style={{
+              axisLabel: { fontSize: 10, padding: 0 },
+              tickLabels: { fontSize: 10, padding: 4 },
+            }}
+            dependentAxis
+            tickFormat={tick => `${tick}kWh`}
+          />
+          <VictoryAxis
+            style={{
+              axisLabel: { fontSize: 10, padding: 0 },
+              tickLabels: { fontSize: 10, padding: 4 },
+            }}
+            tickFormat={BILL_DATA.flatMap(x =>
+              x.DATE.toLocaleString('default', {
+                month: 'short',
+                year: '2-digit',
+              })
+            )}
           />
         </VictoryChart>
       </div>
