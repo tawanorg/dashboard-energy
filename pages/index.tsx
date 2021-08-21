@@ -42,8 +42,8 @@ const Home: NextPage = () => {
           </Stack>
           <Stack>
             <CardBox
-              title="Expected Bill"
-              subtitle="Expected Bill for the 4 next months"
+              title="Predicted Bills"
+              subtitle="Predicted bills for the 4 next months"
             >
               <SimpleGrid
                 columns={2}
