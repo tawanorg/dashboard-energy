@@ -22,6 +22,19 @@ const forecastData = [
 
 class ChartForecast extends React.Component {
   render() {
+    const data = [
+      ...BILL_DATA.flatMap(data => ({
+        x: data.DATE.toLocaleString('default', {
+          month: 'short',
+          // year: '2-digit',
+        }),
+        y: data.properties.BILL,
+      })),
+    ];
+    const months = [...data.map(d => d.x), 'Oct', 'Nov', 'Dec'];
+    // console.log('months', months);
+    // debugger;
+
     return (
       <div>
         <VictoryChart theme={VictoryTheme.material}>
@@ -36,15 +49,7 @@ class ChartForecast extends React.Component {
                 strokeLinecap: 'round',
               },
             }}
-            data={[
-              ...BILL_DATA.flatMap(data => ({
-                x: data.DATE.toLocaleString('default', {
-                  month: 'short',
-                  year: '2-digit',
-                }),
-                y: data.properties.BILL,
-              })),
-            ]}
+            data={data}
           />
           <VictoryLine
             interpolation="natural"
@@ -60,12 +65,12 @@ class ChartForecast extends React.Component {
             }}
             data={[
               {
-                x: 'Sep 21',
+                x: 'Sep',
                 y: BILL_DATA[BILL_DATA.length - 1].properties.BILL,
               },
-              { x: 'Oct 21', y: 78.2378 },
-              { x: 'Nov 21', y: 77.57654 },
-              { x: 'Dec 21', y: 77.67284 },
+              { x: 'Oct', y: 78.2378 },
+              { x: 'Nov', y: 77.57654 },
+              // { x: 'Dec', y: 77.67284 },
             ]}
           />
           <VictoryAxis
@@ -81,12 +86,7 @@ class ChartForecast extends React.Component {
               axisLabel: { fontSize: 10, padding: 0 },
               tickLabels: { fontSize: 10, padding: 4 },
             }}
-            tickFormat={BILL_DATA.flatMap(x =>
-              x.DATE.toLocaleString('default', {
-                month: 'short',
-                year: '2-digit',
-              })
-            )}
+            tickFormat={months}
           />
         </VictoryChart>
       </div>
