@@ -92,7 +92,7 @@ const Navigation = () => {
         >
           <Text opacity="0.6">Your reward</Text>
           <Text fontSize="xl" fontWeight="medium">
-            🎉 1,400 E{' '}
+            🎉 103.00 TOKEN{' '}
             {/* <Button size="sm" ml={GUTTER_WIDTH / 2}>
               Claim
             </Button> */}
