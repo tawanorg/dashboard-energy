@@ -85,55 +85,8 @@ const Map: React.FC<Props> = ({ children }) => {
 function addDataLayer(map, data) {
   map.addSource(SOURCE, {
     type: 'geojson',
-    // data: data,
     data,
-    // cluster: false,
-    // clusterMaxZoom: 14, // Max zoom to cluster points on
-    // clusterRadius: 50, // Radius of each cluster when clustering points (defaults to 50)
-
-    // cluster: true,
-    // clusterMaxZoom: 14,
-    // clusterRadius: 50,
-    // clusterProperties: {
-    //   sum: ['+', ['get', 'DAILY_AVG']],
-    // },
   });
-
-  // map.addLayer({
-  //   id: 'clusters',
-  //   type: 'circle',
-  //   source: SOURCE,
-  //   filter: ['has', 'point_count'],
-  //   paint: {
-  //     // Use step expressions (https://docs.mapbox.com/mapbox-gl-js/style-spec/#expressions-step)
-  //     // with three steps to implement three types of circles:
-  //     //   * Blue, 20px circles when point count is less than 100
-  //     //   * Yellow, 30px circles when point count is between 100 and 750
-  //     //   * Pink, 40px circles when point count is greater than or equal to 750
-  //     'circle-color': [
-  //       'step',
-  //       ['get', 'point_count'],
-  //       LINE_TWO_COLOR,
-  //       100,
-  //       LINE_TWO_COLOR,
-  //       750,
-  //       BALANCE_LINE_COLOR,
-  //     ],
-  //     'circle-radius': ['step', ['get', 'point_count'], 20, 100, 30, 750, 40],
-  //   },
-  // });
-
-  // map.addLayer({
-  //   id: 'cluster-count',
-  //   type: 'symbol',
-  //   source: SOURCE,
-  //   filter: ['has', 'point_count'],
-  //   layout: {
-  //     'text-field': '{point_count_abbreviated}',
-  //     'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
-  //     'text-size': 12,
-  //   },
-  // });
 
   map.addLayer({
     id: `${SOURCE}-circles`,
@@ -167,7 +120,7 @@ function addDataLayer(map, data) {
     type: 'symbol',
     source: SOURCE,
     layout: {
-      'text-field': ['concat', ['to-string', ['get', 'DAILY_AVG']], 'm'],
+      'text-field': ['concat', ['to-string', ['get', 'DAILY_AVG']], ' kWh'],
       'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'],
       'text-size': 12,
     },
@@ -175,22 +128,6 @@ function addDataLayer(map, data) {
       'text-color': '#fff',
     },
   });
-
-  // inspect a cluster on click
-  // map.on('click', 'clusters', e => {
-  //   const features = map.queryRenderedFeatures(e.point, {
-  //     layers: ['clusters'],
-  //   });
-  //   const clusterId = features[0].properties.cluster_id;
-  //   map.getSource(SOURCE).getClusterExpansionZoom(clusterId, (err, zoom) => {
-  //     if (err) return;
-
-  //     map.easeTo({
-  //       center: features[0].geometry.coordinates,
-  //       zoom: zoom,
-  //     });
-  //   });
-  // });
 
   // When a click event occurs on a feature in
   // the unclustered-point layer, open a popup at

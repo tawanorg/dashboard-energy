@@ -36,11 +36,6 @@ const Home: NextPage = () => {
             <CardBox title="Monthly Usage">
               <ChartUsage />
             </CardBox>
-            <CardBox title="Monthly Bills">
-              <ChartBill />
-            </CardBox>
-          </Stack>
-          <Stack>
             <CardBox
               title="Predicted Bills"
               subtitle="Predicted bills for the 4 next months"
@@ -62,6 +57,12 @@ const Home: NextPage = () => {
                 ))}
               </SimpleGrid>
             </CardBox>
+          </Stack>
+          <Stack>
+            <CardBox title="Monthly Bills">
+              <ChartBill />
+            </CardBox>
+
             <CardBox title="Forecast of Usage">
               <ChartForecast />
             </CardBox>

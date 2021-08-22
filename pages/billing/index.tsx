@@ -70,7 +70,7 @@ const Billing: NextPage = () => {
                 </Heading>
                 <Text>400 kilowatt-hours of electricity</Text>
                 <Box>
-                  <CircularProgress value={100} size="200px" color="yellow.500">
+                  <CircularProgress value={90} size="200px" color="yellow.500">
                     <CircularProgressLabel fontSize="4xl" fontWeight="semibold">
                       400
                       <br />
@@ -112,7 +112,7 @@ const Billing: NextPage = () => {
           >
             <CardBox title="Reward System" subtitle="Consumption Goal">
               <Flex flexDir="column" py={GUTTER_WIDTH / 2}>
-                <Progress colorScheme="yellow" height="32px" value={40} />
+                <Progress colorScheme="yellow" height="32px" value={90} />
                 <Flex
                   alignItems="center"
                   justifyContent="space-between"
@@ -121,7 +121,7 @@ const Billing: NextPage = () => {
                 >
                   <Text>0</Text>
                   <Text pos="absolute" left="40%">
-                    134 Kwh
+                    400 Kwh
                   </Text>
                   <Text>500 Kwh</Text>
                 </Flex>
