@@ -1,3 +1,5 @@
+/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/display-name */
 import React from 'react';
 import {
@@ -85,7 +87,9 @@ const Billing: NextPage = () => {
 
   const onCloseRewardModal = () => {
     modal.onClose();
-    setToken(prev => prev + 10);
+    // @ts-ignore
+    setToken((prev: number) => prev + 10);
+
     toast({
       variant: 'left-accent',
       status: 'success',
