@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import React from 'react';
 import {
   Stack,
@@ -21,6 +22,8 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
+  Alert,
+  AlertIcon,
 } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 import Navigation from '@govhack/components/Navigation';
@@ -53,6 +56,9 @@ const Billing: NextPage = () => {
   const { setToken } = useAppContext();
   const [isEligibled, setEligible] = React.useState(false);
   const modal = useDisclosure();
+
+  const toast = useToast();
+
   const [energyValue, setEnergyValue] =
     React.useState<number>(DEFAULT_ENERGY_VALUE);
   const [greenValue, setGreenValue] = React.useState<number>(
@@ -80,6 +86,13 @@ const Billing: NextPage = () => {
   const onCloseRewardModal = () => {
     modal.onClose();
     setToken(prev => prev + 10);
+    toast({
+      variant: 'left-accent',
+      status: 'success',
+      title: 'Token has been added!',
+      description: `${10} Token has been added into your account`,
+      position: 'top',
+    });
   };
 
   const consumpEnergy = (energyValue * 100) / maxEnergyValue;
