@@ -36,12 +36,22 @@ const Home: NextPage = () => {
             <CardBox title="Monthly Usage">
               <ChartUsage />
             </CardBox>
+
+            <CardBox title="Forecast of Usage">
+              <ChartForecast />
+            </CardBox>
+          </Stack>
+          <Stack spacing={GUTTER_WIDTH * 4}>
+            <CardBox title="Monthly Bills">
+              <ChartBill />
+            </CardBox>
+
             <CardBox
               title="Predicted Bills"
               subtitle="Predicted bills for the 4 next months"
             >
-              <SimpleGrid
-                columns={2}
+              <Stack
+                // columns={2}
                 spacing={GUTTER_WIDTH}
                 py={GUTTER_WIDTH * 2}
               >
@@ -55,16 +65,7 @@ const Home: NextPage = () => {
                     value={Number(month[1])}
                   />
                 ))}
-              </SimpleGrid>
-            </CardBox>
-          </Stack>
-          <Stack>
-            <CardBox title="Monthly Bills">
-              <ChartBill />
-            </CardBox>
-
-            <CardBox title="Forecast of Usage">
-              <ChartForecast />
+              </Stack>
             </CardBox>
           </Stack>
         </SimpleGrid>

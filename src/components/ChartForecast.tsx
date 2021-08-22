@@ -37,7 +37,7 @@ class ChartForecast extends React.Component {
 
     return (
       <div>
-        <VictoryChart theme={VictoryTheme.material}>
+        <VictoryChart theme={VictoryTheme.material} height={300}>
           <VictoryLine
             groupComponent={
               <VictoryClipContainer clipPadding={{ top: 5, right: 10 }} />
