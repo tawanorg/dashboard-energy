@@ -96,7 +96,7 @@ const Billing: NextPage = () => {
       title: 'Token has been added!',
       description: `${10} Token has been added into your account`,
       position: 'top',
-      duration: 1000,
+      duration: 1500,
     });
   };
 
