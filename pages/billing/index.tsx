@@ -11,12 +11,23 @@ import {
   Flex,
   Button,
   Divider,
+  useBoolean,
+  useToast,
+  useDisclosure,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
 } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 import Navigation from '@govhack/components/Navigation';
 import { GUTTER_WIDTH } from '@govhack/constants';
 import CardBox from '@govhack/components/CardBox';
 import { formatCurrency } from '../../src/utils/index';
+import { useAppContext } from '@govhack/context';
 
 const INSTALLMENT_PLAN = [
   {
@@ -32,13 +43,30 @@ const INSTALLMENT_PLAN = [
     value: 31.4,
   },
 ];
+
+const DEFAULT_ENERGY_VALUE = 200;
+const DEFAULT_GREENGAS_VALUE = 0.283;
+
+const maxEnergyValue = 500;
+
 const Billing: NextPage = () => {
+  const { setToken } = useAppContext();
   const [isEligibled, setEligible] = React.useState(false);
+  const modal = useDisclosure();
+  const [energyValue, setEnergyValue] =
+    React.useState<number>(DEFAULT_ENERGY_VALUE);
+  const [greenValue, setGreenValue] = React.useState<number>(
+    DEFAULT_GREENGAS_VALUE
+  );
   const [isEligibledLoading, setEligibleLoading] = React.useState(false);
   let timeout: any;
 
   React.useEffect(() => {
     return () => clearTimeout(timeout);
+  }, []);
+
+  React.useEffect(() => {
+    modal.onOpen();
   }, []);
 
   const checkEligibility = () => {
@@ -49,8 +77,37 @@ const Billing: NextPage = () => {
     }, 2000);
   };
 
+  const onCloseRewardModal = () => {
+    modal.onClose();
+    setToken(prev => prev + 10);
+  };
+
+  const consumpEnergy = (energyValue * 100) / maxEnergyValue;
+
   return (
     <Flex flexDir="column" width="full">
+      <Modal isOpen={modal.isOpen} onClose={modal.onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>🎉 Congratulations!</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Flex justifyContent="center" flexDir="column" alignItems="center">
+              <Box fontSize="8xl">🎊</Box>
+              <Text fontSize="xl">Thank you for saving the planet!</Text>
+              <Text fontSize="xl">
+                You've earned <strong>{10}</strong> TOKEN
+              </Text>
+            </Flex>
+          </ModalBody>
+          <ModalFooter justifyContent="center">
+            <Button size="lg" colorScheme="yellow" onClick={onCloseRewardModal}>
+              Claim reward
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+
       <Navigation />
       <Container maxW="5xl" py={GUTTER_WIDTH * 2} px={GUTTER_WIDTH}>
         <Flex flexDir="column" flex={1}>
@@ -68,11 +125,15 @@ const Billing: NextPage = () => {
                 <Heading fontSize="md">
                   Total energy consumption last month
                 </Heading>
-                <Text>400 kilowatt-hours of electricity</Text>
+                <Text>{energyValue} kilowatt-hours of electricity</Text>
                 <Box>
-                  <CircularProgress value={90} size="200px" color="yellow.500">
+                  <CircularProgress
+                    value={consumpEnergy}
+                    size="200px"
+                    color="yellow.500"
+                  >
                     <CircularProgressLabel fontSize="4xl" fontWeight="semibold">
-                      400
+                      {energyValue}
                       <br />
                       <Text fontSize="md">kilowatt-hours</Text>
                     </CircularProgressLabel>
@@ -86,15 +147,18 @@ const Billing: NextPage = () => {
                 alignItems="center"
               >
                 <Heading fontSize="md">Greenhouse gas contribution</Heading>
-                <Text>0.283 metric tonnes of greenhouse gas</Text>
+                <Text>
+                  {Number(greenValue.toFixed(2))} metric tonnes of greenhouse
+                  gas
+                </Text>
                 <Box>
                   <CircularProgress
-                    value={0.283}
+                    value={Number(greenValue.toFixed(2))}
                     size="200px"
                     color="green.400"
                   >
                     <CircularProgressLabel fontSize="4xl" fontWeight="semibold">
-                      0.283
+                      {Number(greenValue.toFixed(2))}
                       <br />
                       <Text fontSize="md">Metric tonnes</Text>
                     </CircularProgressLabel>
@@ -112,7 +176,11 @@ const Billing: NextPage = () => {
           >
             <CardBox title="Reward System" subtitle="Consumption Goal">
               <Flex flexDir="column" py={GUTTER_WIDTH / 2}>
-                <Progress colorScheme="yellow" height="32px" value={90} />
+                <Progress
+                  colorScheme="yellow"
+                  height="32px"
+                  value={consumpEnergy}
+                />
                 <Flex
                   alignItems="center"
                   justifyContent="space-between"
@@ -120,9 +188,11 @@ const Billing: NextPage = () => {
                   fontSize="sm"
                 >
                   <Text>0</Text>
-                  <Text pos="absolute" left="40%">
-                    400 Kwh
-                  </Text>
+                  {energyValue !== maxEnergyValue && (
+                    <Text pos="absolute" left={`${consumpEnergy}%`}>
+                      {energyValue} Kwh
+                    </Text>
+                  )}
                   <Text>500 Kwh</Text>
                 </Flex>
               </Flex>

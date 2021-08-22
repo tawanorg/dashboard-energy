@@ -14,6 +14,7 @@ import faker from 'faker';
 import { GUTTER_WIDTH } from '../constants';
 import { HamburgerIcon } from '@chakra-ui/icons';
 import { useRouter } from 'next/router';
+import { useAppContext } from '@govhack/context';
 
 const MENU = [
   {
@@ -32,6 +33,7 @@ const MENU = [
 
 const Navigation = () => {
   const { asPath } = useRouter();
+  const { token } = useAppContext();
 
   return (
     <Flex
@@ -92,7 +94,7 @@ const Navigation = () => {
         >
           <Text opacity="0.6">Your reward</Text>
           <Text fontSize="xl" fontWeight="medium">
-            🎉 103.00 TOKENS{' '}
+            🎉 {token.toFixed(2)} TOKENS{' '}
             {/* <Button size="sm" ml={GUTTER_WIDTH / 2}>
               Claim
             </Button> */}
